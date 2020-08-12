@@ -35,7 +35,7 @@ namespace lucasvieiravicentenetcore.Services.MVC
             {
                 From = new MailAddress(_senderEmail),
                 Body = $"<p>{email.Body}</p> <p>E-mail: {email.Email}</p> <p>Telefone: {email.PhoneNumber}</p>",
-                Subject = !string.IsNullOrEmpty(email.Subject) ? email.Subject : "Contato via API Email_Lucas",
+                Subject = !string.IsNullOrEmpty(email.Subject) ? email.Subject : "Contato WebResumo",
                 IsBodyHtml = true
             };
             mail.To.Add(_receiverEmail);
