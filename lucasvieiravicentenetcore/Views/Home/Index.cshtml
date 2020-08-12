@@ -170,28 +170,28 @@
                         <div class="form-group floating-label-form-group controls mb-0 pb-2">
                             <label asp-for="Name"></label>
                             <input class="form-control" id="name" type="text" placeholder="Nome" asp-for="Name" />
-                            <p class="help-block text-danger"></p>
+                            <span class="help-block text-danger" asp-validation-for="Name"></span>
                         </div>
                     </div>
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls mb-0 pb-2">
                             <label asp-for="Email"></label>
                             <input class="form-control" id="email" type="email" placeholder="E-mail" asp-for="Email" />
-                            <p class="help-block text-danger"></p>
+                            <span class="help-block text-danger" asp-validation-for="Email"></span>
                         </div>
                     </div>
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls mb-0 pb-2">
                             <label asp-for="PhoneNumber"></label>
                             <input class="form-control" id="phone" type="tel" placeholder="Telefone" asp-for="PhoneNumber" />
-                            <p class="help-block text-danger"></p>
+                            <span class="help-block text-danger" asp-validation-for="PhoneNumber"></span>
                         </div>
                     </div>
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls mb-0 pb-2">
                             <label asp-for="Body"></label>
                             <textarea class="form-control" id="message" rows="5" placeholder="Mensagem" asp-for="Body"></textarea>
-                            <p class="help-block text-danger"></p>
+                            <span class="help-block text-danger" asp-validation-for="Body"></span>
                         </div>
                     </div>
                     <br />

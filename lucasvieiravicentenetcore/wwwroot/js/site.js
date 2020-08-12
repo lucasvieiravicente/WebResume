@@ -14,8 +14,11 @@
             body: $("#message").val()
         }
 
-        $.post("/Home/SendEmail", values).always(function () {
-            $("#contactForm").trigger("reset");
+        $.post("/Home/SendEmail", values).done(function () {
+            $("#name").val("");
+            $("#email").val("")
+            $("#phone").val("");
+            $("#message").val("");
         });
     });
 
