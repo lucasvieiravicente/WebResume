@@ -31,7 +31,7 @@ namespace lucasvieiravicentenetcore.Services.MVC
         {
             MailMessage mail = new MailMessage()
             {
-                From = new MailAddress(email.Email),
+                From = new MailAddress(_receiverEmail),
                 Body = $"<p>{email.Body}</p> <p>E-mail: {email.Email}</p> <p>Telefone: {email.PhoneNumber}</p>",
                 Subject = !string.IsNullOrEmpty(email.Subject) ? email.Subject : "Contato via API Email_Lucas",
                 IsBodyHtml = true
