@@ -14,7 +14,9 @@
             body: $("#message").val()
         }
 
-        $.post("/Home/SendEmail", values);
+        $.post("/Home/SendEmail", values).always(function () {
+            $("#contactForm").trigger("reset");
+        });
     });
 
     // Smooth scrolling using jQuery easing
