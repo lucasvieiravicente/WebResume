@@ -18,34 +18,52 @@
     <style type="text/css">
         .cookiesWarningDiv {
             display: none;
-            padding: 15px;
+            padding-top: 5px;
             position: fixed !important;
             bottom: 0 !important;
-            font-weight: 600;
-            height: 150px;
-            width: 100%;
+            font-weight: 600;           
             background-color: #212529 !important;
             color: white;
             z-index: 9;
         }
 
-        #cookieButton{
-            font-weight: 600;
-            margin-top: 3%;
-            align-self: center;
-        }
-
         #cookieContent{
             float: left;
-            margin-left: 10%;
-            margin-top: 1%;
+            margin-left: 12%;
+            margin-top: 4%;
             font-family: Montserrat;
-            font-size: 15px;
+            font-size: 16px;
         }
 
         #cookieImage{
+            width: 17%;
+            margin-top: 1%;
             margin-right: 13%;
             float: right;
+        }
+
+        #cookieImage img{
+            cursor: pointer;
+        }
+
+        @@media (max-width: 902px){
+            .cookiesWarningDiv{
+                padding-top: 2px;
+            }
+
+            #cookieContent {
+                width: 50%;
+                margin-left: 2%;
+                float: left;
+                font-size: 13px;
+            }
+
+            #cookieImage {
+                margin-top: 5%;
+                width: 42%;                
+                margin-right: 2%;
+                float: right;
+            }
         }
     </style>
 </head>
@@ -113,17 +131,16 @@
     </div>
     <!-- Cookies warning -->    
     <div class="cookiesWarningDiv">
-        <div class="text-center mb-3 ml-5">
+        <div class="text-center">
             <p id="cookieContent">
-                Esta página utiliza cookies para maior desempenho e diminuir consumo de rede
+                Esta página utiliza cookies para melhor desempenho e consumo de rede
                 <br />
-                Caso clique em continar você concorda com o uso dos mesmos.
-                <br/>
-                <span class="btn btn-light btn-sm" id="cookieButton">Continuar</span>
+                Caso concorde com o uso dos mesmos só clicar no monstrinho do cookie ao lado.
+                <br />
             </p>
-            <div class="col-3" id="cookieImage">
+            <div id="cookieImage">
                 <img src="~/images/cookieImage.png" alt="Cookie Image" title="Cookie Image" />
-            </div>                
+            </div>
         </div>
     </div>    
     <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes)-->
@@ -137,12 +154,17 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script type="text/javascript">
         $(document).ready(function () {
+            $(".cookiesWarningDiv").css('width', $(window).width());
             if (document.cookie.indexOf("CookiesWebResume") < 0) {
                 $(".cookiesWarningDiv").slideDown();
             }
         });
 
-        $("#cookieButton").click(function () {
+        window.onresize = function () {
+            $(".cookiesWarningDiv").css('width', $(window).width());
+        }
+
+        $("#cookieImage img").click(function () {
             $(".cookiesWarningDiv").slideUp();
 
             if (document.cookie.indexOf("CookiesWebResume") < 0) {
