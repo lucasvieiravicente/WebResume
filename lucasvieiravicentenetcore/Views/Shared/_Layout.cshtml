@@ -15,6 +15,39 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="~/css/site.css" rel="stylesheet" />
+    <style type="text/css">
+        .cookiesWarningDiv {
+            display: none;
+            padding: 15px;
+            position: fixed !important;
+            bottom: 0 !important;
+            font-weight: 600;
+            height: 150px;
+            width: 100%;
+            background-color: #212529 !important;
+            color: white;
+            z-index: 9;
+        }
+
+        #cookieButton{
+            font-weight: 600;
+            margin-top: 3%;
+            align-self: center;
+        }
+
+        #cookieContent{
+            float: left;
+            margin-left: 10%;
+            margin-top: 1%;
+            font-family: Montserrat;
+            font-size: 15px;
+        }
+
+        #cookieImage{
+            margin-right: 13%;
+            float: right;
+        }
+    </style>
 </head>
 <body id="page-top">
     <header>
@@ -78,6 +111,21 @@
             </small>
         </div>
     </div>
+    <!-- Cookies warning -->    
+    <div class="cookiesWarningDiv">
+        <div class="text-center mb-3 ml-5">
+            <p id="cookieContent">
+                Esta página utiliza cookies para maior desempenho e diminuir consumo de rede
+                <br />
+                Caso clique em continar você concorda com o uso dos mesmos.
+                <br/>
+                <span class="btn btn-light btn-sm" id="cookieButton">Continuar</span>
+            </p>
+            <div class="col-3" id="cookieImage">
+                <img src="~/images/cookieImage.png" alt="Cookie Image" title="Cookie Image" />
+            </div>                
+        </div>
+    </div>    
     <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes)-->
     <div class="scroll-to-top d-lg-none position-fixed">
         <a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top"><i class="fa fa-chevron-up"></i></a>
@@ -87,6 +135,21 @@
     <!-- Third party plugin JS-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            if (document.cookie.indexOf("CookiesWebResume") < 0) {
+                $(".cookiesWarningDiv").slideDown();
+            }
+        });
+
+        $("#cookieButton").click(function () {
+            $(".cookiesWarningDiv").slideUp();
+
+            if (document.cookie.indexOf("CookiesWebResume") < 0) {
+                document.cookie = "CookiesWebResume=Accepted"
+            }            
+        });
+    </script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>
