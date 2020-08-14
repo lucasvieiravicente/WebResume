@@ -11,6 +11,7 @@ using lucasvieiravicentenetcore.Services.Interfaces;
 
 namespace lucasvieiravicentenetcore.Controllers
 {
+    [ResponseCache(CacheProfileName = "HomeCache")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
