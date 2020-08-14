@@ -40,13 +40,13 @@ namespace lucasvieiravicentenetcore.Controllers
         {
             if (!ModelState.IsValid)
             {
-                ViewBag.Message = "Verifique os campos";
+                ViewBag.Message = new Tuple<string, string>("Verifique os campos!", "alert alert-danger");
                 return View(nameof(Index));
             }                
 
             _appService.SendEmail(emailViewModel);
 
-            ViewBag.Message = "E-mail enviado com sucesso!";
+            ViewBag.Message = new Tuple<string, string>("E-mail enviado com sucesso!", "alert alert-success");
             return View(nameof(Index));
         }
     }

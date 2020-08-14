@@ -1,12 +1,12 @@
 ﻿@model EmailViewModel;
 
 <header class="masthead text-center">
-    @if (!string.IsNullOrEmpty(ViewBag.Message))
+    @if (ViewBag.Message != null)
     {
     <div id="success">
-        <div class="alert alert-secondary">
+        <div class="@ViewBag.Message.Item2">
             <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
-            <strong>@ViewBag.Message</strong>
+            <strong>@ViewBag.Message.Item1</strong>
         </div>
     </div>
     }
