@@ -36,19 +36,20 @@ namespace lucasvieiravicentenetcore.Controllers
 
         [HttpPost]
         [ProducesResponseType(400)]
-        [ProducesResponseType(200)]
+        [ProducesResponseType(200)]        
         public IActionResult SendEmail(EmailViewModel emailViewModel)
         {
+            string val;
             if (!ModelState.IsValid)
             {
-                ViewBag.Message = new Tuple<string, string>("Verifique os campos!", "alert alert-danger");
-                return View(nameof(Index));
+                val = "Verifique os campos!";
+                return BadRequest(val);
             }                
 
-            _appService.SendEmail(emailViewModel);
+            _appService.SendEmail(emailViewModel);            
 
-            ViewBag.Message = new Tuple<string, string>("E-mail enviado com sucesso!", "alert alert-success");
-            return View(nameof(Index));
+            val = "E-mail enviado com sucesso!";
+            return Ok(val);
         }
     }
 }
