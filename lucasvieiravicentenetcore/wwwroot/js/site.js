@@ -6,20 +6,65 @@
 (function ($) {
     "use strict"; // Start of use strict
 
-    $("#sendMessageButton").click(function () {
+    $("#sendMessageButton").click(function (e) {
+        e.preventDefault();
+        var button = $("#sendMessageButton");
+        button.prop("disabled", true); // Disable submit button until AJAX call is complete to prevent duplicate messages                    
+
         var values = {
             name: $("#name").val(),
             email: $("#email").val(),
             phoneNumber: $("#phone").val(),
-            body: $("#message").val()
+            body: $("#message").val()            
         }
 
-        $.post("/Home/SendEmail", values).done(function () {
-            $("#name").val("");
-            $("#email").val("")
-            $("#phone").val("");
-            $("#message").val("");
-        });
+        $.ajax({
+            url: "/Home/SendEmail",
+            type: "POST",
+            data: values,            
+        }).done(function (data) {
+            // Success message
+            $("#success").html("<div class='alert alert-success'>");
+            $("#success > .alert-success")
+                .html(
+                    "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;"
+                )
+                .append("</button>");
+            $("#success > .alert-success").append(
+                "<strong>" + data + "</strong>"
+            );
+            $("#success > .alert-success").append("</div>");  
+        }).fail(function (data) {
+            // Fail message
+            let messageError;
+
+            if (data.responseText != null) {
+                messageError = data.responseText;
+            }
+            else if (data != null) {
+                messageError = data;
+            }
+            else {
+                messageError = "Desculpa " + firstName + ", parece que no momento não consigo enviar o e-mail, tente outro contato!";
+            }
+
+            $("#success").html("<div class='alert alert-danger'>");
+            $("#success > .alert-danger")
+                .html(
+                    "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;"
+                )
+                .append("</button>");
+            $("#success > .alert-danger").append(
+                $("<strong>").text(messageError)
+            );
+            $("#success > .alert-danger").append("</div>");
+        }).always(function () {
+            $("#contactForm").trigger("reset");
+
+            setTimeout(function () {
+                $this.prop("disabled", false); // Re-enable submit button when AJAX call is complete
+            }, 1000);
+        });        
     });
 
     // Smooth scrolling using jQuery easing
