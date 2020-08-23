@@ -23,16 +23,10 @@ namespace lucasvieiravicentenetcore.Controllers
             _appService = appService;
         }
 
-        public IActionResult Index()
-        {
-            return View(new EmailViewModel());
-        }
+        public IActionResult Index() => View(new EmailViewModel());
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+        public IActionResult Error() => View();        
 
         [HttpPost]
         [ProducesResponseType(400)]

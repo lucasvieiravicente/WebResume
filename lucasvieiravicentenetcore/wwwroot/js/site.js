@@ -6,6 +6,25 @@
 (function ($) {
     "use strict"; // Start of use strict
 
+    $(document).ready(function () {
+        $(".cookiesWarningDiv").css('width', $(window).width());
+        if (document.cookie.indexOf("CookiesWebResume") < 0) {
+            $(".cookiesWarningDiv").slideDown();
+        }
+    });
+
+    window.onresize = function () {
+        $(".cookiesWarningDiv").css('width', $(window).width());
+    }
+
+    $("#cookieImage img").click(function () {
+        $(".cookiesWarningDiv").slideUp();
+
+        if (document.cookie.indexOf("CookiesWebResume") < 0) {
+            document.cookie = "CookiesWebResume=Accepted"
+        }
+    });
+
     $("#sendMessageButton").click(function (e) {
         e.preventDefault();
         var button = $("#sendMessageButton");

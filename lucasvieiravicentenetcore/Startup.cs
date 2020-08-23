@@ -29,7 +29,7 @@ namespace lucasvieiravicentenetcore
             services.AddScoped<ISendEmailAppService, SendEmailAppService>();
             services.AddResponseCaching();
             services.AddMvc(options =>
-                options.CacheProfiles.Add("HomeCache", new CacheProfile() {
+                options.CacheProfiles.Add("HomeCache", new CacheProfile() { //Option to configure CacheProfile
                     Duration  = (int)TimeSpan.FromHours(4).TotalSeconds
                 })
             );
@@ -50,7 +50,7 @@ namespace lucasvieiravicentenetcore
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-            app.UseResponseCaching();
+            app.UseResponseCaching(); //To use Cache
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 

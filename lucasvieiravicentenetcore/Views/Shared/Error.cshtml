@@ -1,25 +1,40 @@
 ﻿@model ErrorViewModel
 @{
-    ViewData["Title"] = "Error";
+    ViewData["Title"] = "Ops!";
+    Layout = "_LayoutWithoutButtons";    
 }
 
-<h1 class="text-danger">Error.</h1>
-<h2 class="text-danger">An error occurred while processing your request.</h2>
-
-@if (Model.ShowRequestId)
-{
-    <p>
-        <strong>Request ID:</strong> <code>@Model.RequestId</code>
-    </p>
+@section Styles{
+    <style type="text/css">        
+        #kermitImage{
+            width:30%;
+            float:left;
+        }
+        .page-section{
+            padding-bottom: 0;
+        }
+        .title, .subtitle {
+            color: #2c3e50;
+        }
+        .title{
+            font-weight: bold;
+            font-size:50px;
+        }
+        .subtitle {
+            font-weight: 600;
+            font-size: 30px;
+        }
+    </style>    
 }
 
-<h3>Development Mode</h3>
-<p>
-    Swapping to <strong>Development</strong> environment will display more detailed information about the error that occurred.
-</p>
-<p>
-    <strong>The Development environment shouldn't be enabled for deployed applications.</strong>
-    It can result in displaying sensitive information from exceptions to end users.
-    For local debugging, enable the <strong>Development</strong> environment by setting the <strong>ASPNETCORE_ENVIRONMENT</strong> environment variable to <strong>Development</strong>
-    and restarting the app.
-</p>
+<div class="page-section clearfix">    
+    <div class="container mt-5">
+        <div id="kermitImage">
+            <img src="~/images/errorKermit.png"/>
+        </div>
+        <div class="col-8 float-right mt-5">
+            <span class="title">Ops!</span><br/>
+            <span class="subtitle">Aparentemente houve um erro, e como pode ver irritou mais alguém além de você...</span>
+        </div>
+    </div>    
+</div>
