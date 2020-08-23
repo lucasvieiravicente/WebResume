@@ -32,18 +32,12 @@ namespace lucasvieiravicentenetcore.Controllers
         [ProducesResponseType(400)]
         [ProducesResponseType(200)]        
         public IActionResult SendEmail(EmailViewModel emailViewModel)
-        {
-            string val;
-            if (!ModelState.IsValid)
-            {
-                val = "Verifique os campos!";
-                return BadRequest(val);
-            }                
+        {            
+            if (!ModelState.IsValid) return BadRequest("Verifique os campos!");             
 
             _appService.SendEmail(emailViewModel);            
-
-            val = "E-mail enviado com sucesso!";
-            return Ok(val);
+            
+            return Ok("E-mail enviado com sucesso!");
         }
     }
 }
