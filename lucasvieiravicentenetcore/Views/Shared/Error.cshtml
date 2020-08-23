@@ -8,7 +8,12 @@
     <style type="text/css">        
         #kermitImage{
             width:30%;
+            margin-left: 6%;
             float:left;
+        }
+        #textContent {
+            margin-right: 6%;
+            margin-top: 4%;
         }
         .page-section{
             padding-bottom: 0;
@@ -24,15 +29,40 @@
             font-weight: 600;
             font-size: 30px;
         }
+
+        @@media(max-width: 902px){
+            #textContent, #kermitImage {
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+            }
+
+            #kermitImage {              
+                left: 70px;
+                width: 50%;                
+                float: left;
+            }        
+
+            .title {
+                font-weight: bold;
+                font-size: 23px;
+            }
+
+            .subtitle {
+                font-weight: 600;
+                font-size: 12px;
+            }
+        }
     </style>    
 }
 
 <div class="page-section clearfix">    
-    <div class="container mt-5">
+    <div class="container">
         <div id="kermitImage">
             <img src="~/images/errorKermit.png"/>
         </div>
-        <div class="col-8 float-right mt-5">
+        <div id="textContent" class="col-6 float-right">
             <span class="title">Ops!</span><br/>
             <span class="subtitle">Aparentemente houve um erro, e como pode ver irritou mais alguém além de você...</span>
         </div>
