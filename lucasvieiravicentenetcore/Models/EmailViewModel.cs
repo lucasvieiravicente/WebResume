@@ -1,7 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.Text.Json;
-using System.Text.Json.Serialization;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace lucasvieiravicentenetcore.Models
 {
@@ -11,6 +8,7 @@ namespace lucasvieiravicentenetcore.Models
         [Display(Name = "Nome")]
         public string Name { get; set; }
 
+        [EmailAddress]
         [Required(ErrorMessage = "É necessário um E-mail")]
         [Display(Name = "E-mail")]
         public string Email { get; set; }
