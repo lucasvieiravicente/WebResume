@@ -53,6 +53,8 @@
                 "<strong>" + data + "</strong>"
             );
             $("#success > .alert-success").append("</div>");  
+
+            $("#contactForm").trigger("reset");
         }).fail(function (data) {
             // Fail message
             let messageError;
@@ -78,7 +80,6 @@
             );
             $("#success > .alert-danger").append("</div>");
         }).always(function () {
-            $("#contactForm").trigger("reset");
 
             setTimeout(function () {
                 button.prop("disabled", false); // Re-enable submit button when AJAX call is complete
