@@ -30,7 +30,7 @@ namespace lucasvieiravicentenetcore
             services.AddResponseCaching();
             services.AddMvc(options =>
                 options.CacheProfiles.Add("HomeCache", new CacheProfile() { //Option to configure CacheProfile
-                    Duration  = (int)TimeSpan.FromHours(4).TotalSeconds
+                    Duration  = (int)TimeSpan.FromHours(12).TotalSeconds
                 })
             );
             services.AddControllersWithViews()

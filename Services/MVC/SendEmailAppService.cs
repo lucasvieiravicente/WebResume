@@ -29,13 +29,15 @@ namespace lucasvieiravicentenetcore.Services.MVC
             _smtp = _configuration["EmailsConfigs:Smtp"];            
         }
 
-        public void SendEmail(EmailViewModel email)
+        public async Task SendEmail(EmailViewModel email)
         {
             MailMessage mail = new MailMessage()
             {
                 From = new MailAddress(_senderEmail),
-                Body = $"<p>{email.Body}</p> <p>E-mail: {email.Email}</p> <p>Telefone: {email.PhoneNumber}</p>",
-                Subject = !string.IsNullOrEmpty(email.Subject) ? email.Subject : "Contato WebResumo",
+                Body = $@"<p>{email.Body}</p> 
+                          <p><b>E-mail</b>: {email.Email}</p> 
+                          <p><b>Telefone</b>: {email.PhoneNumber}</p>",
+                Subject = !string.IsNullOrEmpty(email.Subject) ? email.Subject : $"Contato WebResume - {email.Name}",
                 IsBodyHtml = true
             };
             mail.To.Add(_receiverEmail);
@@ -48,7 +50,7 @@ namespace lucasvieiravicentenetcore.Services.MVC
 
                 smtp.Credentials = new NetworkCredential(_loginEmail, _loginPassword);
 
-                smtp.Send(mail);
+                await smtp.SendMailAsync(mail);
             }
         }
     }
