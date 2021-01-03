@@ -74,7 +74,7 @@
                 )
                 .append("</button>");
             $("#success > .alert-danger").append(
-                $("<strong>").text(messageError)
+                $("<strong>").append(messageError)
             );
             $("#success > .alert-danger").append("</div>");
         }).always(function () {

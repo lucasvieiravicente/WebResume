@@ -12,7 +12,7 @@ using lucasvieiravicentenetcore.Services.Interfaces;
 namespace lucasvieiravicentenetcore.Controllers
 {
     [ResponseCache(CacheProfileName = "HomeCache")]
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ISendEmailAppService _appService;
@@ -32,8 +32,8 @@ namespace lucasvieiravicentenetcore.Controllers
         [ProducesResponseType(400)]
         [ProducesResponseType(200)]        
         public IActionResult SendEmail(EmailViewModel emailViewModel)
-        {            
-            if (!ModelState.IsValid) return BadRequest("Verifique os campos!");             
+        {
+            if (!ModelState.IsValid) return BadRequest(GetMessageErrors());             
 
             _appService.SendEmail(emailViewModel);            
             
